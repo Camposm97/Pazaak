@@ -24,6 +24,7 @@ public class Demo extends Application {
 				col = 0;
 				row++;
 			}
+			
 			if (row >= 3) {
 				break;
 			}
