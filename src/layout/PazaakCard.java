@@ -1,4 +1,4 @@
-package view;
+package layout;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -9,6 +9,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import model.CardInfo;
+import model.CardType;
 import util.FXUtil;
 
 public class PazaakCard extends StackPane {
@@ -39,12 +40,10 @@ public class PazaakCard extends StackPane {
 		getChildren().add(r);
 		
 		if (cardInfo != null) {
-			setOnMouseEntered(e -> {
-				r.setStroke(Color.YELLOW);
-			});
-			setOnMouseExited(e -> {
-				r.setStroke(Color.BLACK);
-			});
+			if (!cardInfo.getType().equals(CardType.Main)) {
+				setOnMouseEntered(e -> { r.setStroke(Color.YELLOW); });
+				setOnMouseExited(e -> { r.setStroke(Color.BLACK); });
+			}
 			getChildren().add(loadCardDetails());
 		} else {
 			Rectangle r1 = new Rectangle(WIDTH_OF_CARD * 0.9, HEIGHT_OF_CARD * 0.95, FXUtil.loadLg(null));
