@@ -17,26 +17,6 @@ import util.FXUtil;
 
 public class SideDeckChooser extends StackPane {
 	public SideDeckChooser(Scene scene) {
-		Rectangle r1 = new Rectangle();
-		r1.setFill(Color.GRAY);
-		r1.widthProperty().bind(scene.widthProperty());
-		r1.heightProperty().bind(scene.heightProperty());
-		
-		Rectangle r2 = new Rectangle();
-		r2.setFill(Color.LIGHTGRAY);
-		r2.setStroke(Color.BLACK);
-		r2.widthProperty().bind(r1.widthProperty().multiply(0.98));
-		r2.heightProperty().bind(r1.heightProperty().multiply(0.98));
-		r2.setArcWidth(20);
-		r2.setArcHeight(20);
-		
-//		Rectangle r3 = new Rectangle();
-//		r3.setFill(Color.GRAY);
-//		r3.setStroke(Color.BLACK);
-//		r3.widthProperty().bind(r2.widthProperty().multiply(0.95));
-//		r3.heightProperty().bind(r2.heightProperty().multiply(0.95));
-//		r3.setArcWidth(20);
-//		r3.setArcHeight(20);
 		final String tfStyle = "-fx-text-fill: white; -fx-background-color: black; -fx-border-color: gray;";
 		TextField tf1 = new TextField("Available Cards");
 		tf1.setStyle(tfStyle);
@@ -80,9 +60,26 @@ public class SideDeckChooser extends StackPane {
 		gridPane.setGridLinesVisible(true);
 		FXUtil.displayCards(gridPane);
 		gridPane.add(hBox, 0, 0, 6, 1);
-//		gridPane.add(s1, 7, 0, 1, 50);
 		gridPane.add(vBox, 8, 0);		
-		getChildren().addAll(r1, r2, gridPane);
+		getChildren().addAll(loadBackground(), gridPane);
 		scene.setRoot(this);
+	}
+	
+	private StackPane loadBackground() {
+		StackPane pane = new StackPane();
+		Rectangle r1 = new Rectangle();
+		r1.setFill(Color.GRAY);
+		r1.widthProperty().bind(pane.widthProperty());
+		r1.heightProperty().bind(pane.heightProperty());
+		
+		Rectangle r2 = new Rectangle();
+		r2.setFill(Color.LIGHTGRAY);
+		r2.setStroke(Color.BLACK);
+		r2.widthProperty().bind(r1.widthProperty().multiply(0.98));
+		r2.heightProperty().bind(r1.heightProperty().multiply(0.98));
+		r2.setArcWidth(20);
+		r2.setArcHeight(20);
+		pane.getChildren().addAll(r1, r2);
+		return pane;
 	}
 }
