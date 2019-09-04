@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class CardMatrix {
 	private Card[][] arr;
 	private int nRow, nCol, rowSize, colSize;
@@ -18,6 +20,16 @@ public class CardMatrix {
 			nRow++;
 			nCol = 0;
 		}
+	}
+	
+	public ArrayList<Card> getPickedCards() {
+		ArrayList<Card> list = new ArrayList<>();
+		for (Card[] cards : arr) {
+			for (Card c : cards) {
+				
+			}
+		}
+		return list;
 	}
 	
 	public Card get(int row, int col) {

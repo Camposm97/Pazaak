@@ -36,23 +36,28 @@ public class PazaakCard extends Card {
 	public boolean isSelected() {
 		return selected;
 	}
+	
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+		if (selected) {
+			r.setStroke(Color.BLACK);
+		} else {
+			r.setStroke(Color.YELLOW);
+		}
+	}
 
 	private void buildCard() {
 		if (!info.getType().equals(CardType.Main))
-			initFunctions();
+			setOnMouseClicked(e -> {
+				if (selected) {
+					r.setStroke(Color.BLACK);
+					setSelected(false);
+				} else {
+					r.setStroke(Color.YELLOW);
+					setSelected(true);
+				}
+			});
 		getChildren().add(buildDetails());
-	}
-	
-	private void initFunctions() {
-		setOnMouseClicked(e -> {
-			if (selected) {
-				r.setStroke(Color.BLACK);
-				selected = false;
-			} else {
-				r.setStroke(Color.YELLOW);
-				selected = true;
-			}
-		});
 	}
 
 	private VBox buildDetails() {
