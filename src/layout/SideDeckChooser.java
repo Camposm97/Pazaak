@@ -1,7 +1,5 @@
 package layout;
 
-import java.util.ArrayList;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
@@ -11,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import model.Card;
 import model.CardInfo;
 import model.PazaakCard;
 import util.FXUtil;
