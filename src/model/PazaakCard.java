@@ -13,91 +13,76 @@ import util.FXUtil;
 public class PazaakCard extends Card {
 	private CardInfo info;
 	private boolean selected;
-	
-	public PazaakCard(CardInfo info) {
+
+	public PazaakCard(CardInfo info) { // Creates a Main/Plus/Minus Card
 		this.info = info;
 		buildCard();
 	}
-	
-	public PazaakCard() {
+
+	public PazaakCard() { // Creates a Main Card (Green Card)
 		info = new CardInfo();
 		buildCard();
 	}
-	
+
 	public CardInfo getInfo() {
 		return info;
 	}
-	
+
 	public boolean isSelected() {
 		return selected;
 	}
-	
+
 	private void buildCard() {
-		if (info != null) { // Plus or Minus Card
-			if (!info.getType().equals(CardType.Main)) {
-				setOnMouseClicked(e -> {
-					if (selected) {
-						r.setStroke(Color.BLACK);
-						selected = false;
-					} else {
-						r.setStroke(Color.YELLOW);
-						selected = true;
-					}
-				});
-			}
-			getChildren().add(loadDetails());
-		} else { // Main Card
-			Rectangle r1 = new Rectangle(WIDTH_OF_CARD * 0.9, HEIGHT_OF_CARD * 0.95, FXUtil.loadLg(null));
-			r1.setStroke(Color.DIMGRAY);
-			r1.setArcWidth(ARC_SIZE);
-			r1.setArcHeight(ARC_SIZE);
-			getChildren().add(r1);
+		if (!info.getType().equals(CardType.Main)) {
+			setOnMouseClicked(e -> {
+				if (selected) {
+					r.setStroke(Color.BLACK);
+					selected = false;
+				} else {
+					r.setStroke(Color.YELLOW);
+					selected = true;
+				}
+			});
 		}
+		getChildren().add(buildDetails());
 	}
-	
-	private VBox loadDetails() {
-		Polygon pg1 = loadPoly(1); // Above Display of Number
-		Polygon pg2 = loadPoly(1); // Below Display of Number
+
+	private VBox buildDetails() {
+		Polygon pg1 = loadPoly(Poly.Pivot);
+		Polygon pg2 = loadPoly(Poly.Pivot);
 		pg2.setRotate(180);
-		Polygon pg3 = loadPoly(0); // Bottom Detail of Card
-		
-		Rectangle r = new Rectangle(WIDTH_OF_CARD*0.85, HEIGHT_OF_CARD*0.2, Color.BLACK);
-		r.setStroke(Color.GRAY);
-		
+		Polygon pg3 = loadPoly(Poly.Normal);
+
+		Rectangle r1 = new Rectangle(WIDTH_OF_CARD * 0.85, HEIGHT_OF_CARD * 0.2, Color.BLACK);
+		r1.setStroke(Color.GRAY);
+		r1.setArcWidth(ARC_SIZE);
+		r1.setArcHeight(ARC_SIZE);
+
 		Label lbl = new Label(info.toString());
 		lbl.setTextFill(Color.WHITE);
 		lbl.setFont(Font.font(24));
-		
+
 		StackPane stackPane = new StackPane();
-		stackPane.getChildren().addAll(r, lbl);
-		
+		stackPane.getChildren().addAll(r1, lbl);
+
 		VBox vBox = new VBox(5);
 		vBox.setAlignment(Pos.CENTER);
 		vBox.getChildren().addAll(pg1, stackPane, pg2, pg3);
 		return vBox;
 	}
-	
-	private Polygon loadPoly(int n) {
+
+	private Polygon loadPoly(Poly poly) {
 		final double width = WIDTH_OF_CARD * 0.85;
-		final double x1 = (HEIGHT_OF_CARD * 0.2) - 5;
+		final double pt1 = (HEIGHT_OF_CARD * 0.2) - 5;
 		Polygon pg = new Polygon();
-		if (n == 0){
-			pg.getPoints().addAll(new Double[] {
-					0.0, 0.0,
-					0.0, x1,
-					width, x1,
-					width, 0.0
-			});
-		} else if (n == 1) {
-			pg.getPoints().addAll(new Double[] {
-					0.0, 0.0,
-					0.0, x1,
-					(width/2)-(x1/2), x1,
-					width/2, x1/2,
-					(width/2)+(x1/2), x1,
-					width, x1,
-					width, 0.0
-			});
+		Double[] arr;
+		if (poly.equals(Poly.Normal)) {
+			arr = new Double[] { 0.0, 0.0, 0.0, pt1, width, pt1, width, 0.0 };
+			pg.getPoints().addAll(arr);
+		} else if (poly.equals(Poly.Pivot)) {
+			arr = new Double[] { 0.0, 0.0, 0.0, pt1, (width / 2) - (pt1 / 2), pt1, width / 2, pt1 / 2,
+					(width / 2) + (pt1 / 2), pt1, width, pt1, width, 0.0 };
+			pg.getPoints().addAll(arr);
 		}
 		pg.setStroke(Color.GRAY);
 		pg.setFill(FXUtil.loadLg(info.getType()));
