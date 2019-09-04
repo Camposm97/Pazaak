@@ -1,20 +1,38 @@
 package layout;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import model.DeckPicker;
+import model.PazaakCard;
 import util.FXUtil;
 
-public class SideDeckPickerPane extends BorderPane {
+public class DeckPickerPane extends BorderPane {
 	private DeckPicker deckPicker;
 	
-	public SideDeckPickerPane() {
+	public DeckPickerPane() {
 		deckPicker = new DeckPicker();
 		setTop(loadTopPane());
 		setCenter(deckPicker.loadGridPane());
+		setBottom(loadBottomPane());
+	}
+	
+	private StackPane loadBottomPane() {
+		Button bt = new Button("Start Game");
+		bt.setOnAction(e -> {
+			PazaakCard[] deck = deckPicker.getPickedCards();
+			if (deck != null) {
+				System.out.println("Starting Game...");
+			} else {
+				System.out.println("ERROR");
+			}
+		});
+		StackPane pane = new StackPane(bt);
+		pane.setPadding(FXUtil.DEFAULT_INSETS);
+		return pane;
 	}
 	
 	private StackPane loadTopPane() {
