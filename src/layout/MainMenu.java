@@ -25,7 +25,7 @@ public class MainMenu extends BorderPane {
 	
 	private VBox loadBoxOfBtns() {
 		Button btStart = new Button("Start");
-		btStart.setOnAction(e -> { getScene().setRoot(new SideDeckPickerPane()); });
+		btStart.setOnAction(e -> { getScene().setRoot(new DeckPickerPane()); });
 		Button btHelp = new Button("How to Play");
 		btHelp.setOnAction(e -> { Web.openThisRepo(); });
 		Button btQuit = new Button("Quit");
