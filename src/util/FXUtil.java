@@ -11,9 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import layout.PazaakCard;
 import model.CardInfo;
 import model.CardType;
+import model.Card;
 
 public class FXUtil {
 	public static final Insets DEFAULT_INSETS = new Insets(10);
@@ -25,25 +25,6 @@ public class FXUtil {
 			vBox.getChildren().add(n);
 		}
 		return vBox;
-	}
-
-	public static void displayCards(GridPane gridPane) {
-		int col = 0;
-		int row = 1;
-		for (int i = 1; i <= 6; i++) {
-			PazaakCard pc = new PazaakCard(new CardInfo(i));
-			gridPane.add(pc, col, row);
-			col++;
-			if (col >= 6) {
-				col = 0;
-				row++;
-			}
-		}
-		for (int i = -1; i >= -6; i--) {
-			PazaakCard pc = new PazaakCard(new CardInfo(i));
-			gridPane.add(pc, col, row);
-			col++;
-		}
 	}
 
 	public static LinearGradient loadLg(CardType cardType) {

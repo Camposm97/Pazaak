@@ -1,77 +1,79 @@
 package layout;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Separator;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
+import model.Card;
+import model.CardInfo;
+import model.PazaakCard;
 import util.FXUtil;
 
-public class SideDeckChooser extends StackPane {
-	public SideDeckChooser(Scene scene) {
-		final String tfStyle = "-fx-text-fill: white; -fx-background-color: black; -fx-border-color: gray;";
+public class SideDeckChooser extends BorderPane {
+	private GridPane cardGrid;
+	
+	public SideDeckChooser() {
+		initCardGrid();
+		setCenter(loadCenterPane(cardGrid));
+	}
+	
+	private HBox loadGridLabels() {
+		String tfStyle = "-fx-text-fill: white; -fx-background-color: black; "
+				+ "-fx-border-color: gray; -fx-font-size: 24pt;";
 		TextField tf1 = new TextField("Available Cards");
 		tf1.setStyle(tfStyle);
 		tf1.setEditable(false);
 		tf1.setAlignment(Pos.CENTER);
-		tf1.setFont(Font.font(24));
 		TextField tf2 = new TextField("Choose Sidedeck");
 		tf2.setStyle(tfStyle);
 		tf2.setEditable(false);
 		tf2.setAlignment(Pos.CENTER);
-		tf2.setFont(Font.font(24));
-		TextField tf3 = new TextField("Chosen Cards");
-		tf3.setStyle(tfStyle);
-		tf3.setEditable(false);
-		tf3.setAlignment(Pos.CENTER);
-		tf3.setFont(Font.font(24));
-		
 		HBox hBox = new HBox(100);
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(FXUtil.DEFAULT_INSETS);
 		hBox.getChildren().addAll(tf1, tf2);
-		
-		GridPane chosenCards = new GridPane();
-		chosenCards.setAlignment(Pos.CENTER);
-		chosenCards.setHgap(10);
-		chosenCards.setVgap(10);
-		
-		VBox vBox = new VBox(10);
-		vBox.setAlignment(Pos.CENTER);
-		vBox.setPadding(FXUtil.DEFAULT_INSETS);
-		vBox.getChildren().add(tf3);
-		
-		Separator s1 = new Separator();
-		s1.setOrientation(Orientation.VERTICAL);
-		
-		GridPane gridPane = new GridPane();
-		gridPane.setAlignment(Pos.TOP_CENTER);
-		gridPane.setPadding(new Insets(80, 120, 80, 120));
-		gridPane.setHgap(20);
-		gridPane.setVgap(10);
-		gridPane.setGridLinesVisible(true);
-		FXUtil.displayCards(gridPane);
-		gridPane.add(hBox, 0, 0, 6, 1);
-		gridPane.add(vBox, 8, 0);		
-		getChildren().addAll(loadBackground(), gridPane);
-		scene.setRoot(this);
+		return hBox;
 	}
 	
-	private StackPane loadBackground() {
+	private void initCardGrid() {
+		cardGrid = new GridPane();
+		cardGrid.setAlignment(Pos.TOP_CENTER);
+		cardGrid.setPadding(new Insets(80, 120, 80, 120));
+		cardGrid.setHgap(30);
+		cardGrid.setVgap(30);
+		cardGrid.setGridLinesVisible(true);
+		cardGrid.add(loadGridLabels(), 0, 0, 7, 1);
+		
+		int col = 0, row = 1;
+		Card pc = null;
+		for (int i = 1; i <= 6; i++) {
+			pc = new PazaakCard(new CardInfo(i));
+			cardGrid.add(pc, col, row);
+			col++;
+			if (col >= 6) {
+				col = 0;
+				row++;
+			}
+		}
+		for (int i = -1; i >= -6; i--) {
+			pc = new PazaakCard(new CardInfo(i));
+			cardGrid.add(pc, col, row);
+			col++;
+		}
+	}
+	
+	private StackPane loadCenterPane(Node node) {
 		StackPane pane = new StackPane();
 		Rectangle r1 = new Rectangle();
 		r1.setFill(Color.GRAY);
 		r1.widthProperty().bind(pane.widthProperty());
 		r1.heightProperty().bind(pane.heightProperty());
-		
 		Rectangle r2 = new Rectangle();
 		r2.setFill(Color.LIGHTGRAY);
 		r2.setStroke(Color.BLACK);
@@ -79,7 +81,7 @@ public class SideDeckChooser extends StackPane {
 		r2.heightProperty().bind(r1.heightProperty().multiply(0.98));
 		r2.setArcWidth(20);
 		r2.setArcHeight(20);
-		pane.getChildren().addAll(r1, r2);
+		pane.getChildren().addAll(r1, r2, node);
 		return pane;
 	}
 }

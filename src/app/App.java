@@ -18,7 +18,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) {
 		Scene scene = new Scene(root);
-		stage.getIcons().add(ImgUtil.loadImg("images/pazaak.png"));
+		stage.getIcons().add(ImgUtil.loadImg(ImgUtil.ICON_PAZAAK));
 		stage.setTitle(TITLE);
 		stage.setWidth(1600);
 		stage.setHeight(900);

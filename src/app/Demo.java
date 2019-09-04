@@ -1,7 +1,5 @@
 package app;
 
-import java.util.Map;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.ClipboardContent;
@@ -10,12 +8,13 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import layout.PazaakCard;
+import model.Card;
+import model.PazaakCard;
 
 public class Demo extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
-		PazaakCard pc1 = new PazaakCard();
+		Card pc1 = new PazaakCard();
 		pc1.setOnDragDetected(e -> {
 			System.out.println("onDragDetected");
             /* allow any transfer mode */
@@ -26,7 +25,7 @@ public class Demo extends Application {
             db.setContent(content);
             e.consume();
 		});
-		PazaakCard pc2 = new PazaakCard(null);
+		Card pc2 = new PazaakCard(null);
 		pc2.setOnDragOver(e -> {
 			System.out.println("onDragOver");
             
@@ -48,6 +47,6 @@ public class Demo extends Application {
     }
 
     public static void main(String[] args) {
-        Application.launch(args);
+        launch(args);
     }
 }

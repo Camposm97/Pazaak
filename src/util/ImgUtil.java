@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class ImgUtil {
+	public static final String ICON_PAZAAK = "images/pazaak.png";
+	
 	public static Image loadImg(String url) {
 		FileInputStream fis = null;
 		try {
