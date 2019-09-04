@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 public class ImgUtil {
 	public static final String ICON_PAZAAK = "images/pazaak.png";

@@ -5,15 +5,12 @@ import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import model.CardInfo;
 import model.CardType;
-import model.Card;
 
 public class FXUtil {
 	public static final Insets DEFAULT_INSETS = new Insets(10);
