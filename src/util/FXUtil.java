@@ -5,11 +5,13 @@ import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
 import model.CardType;
 
 public class FXUtil {
@@ -22,6 +24,25 @@ public class FXUtil {
 			vBox.getChildren().add(n);
 		}
 		return vBox;
+	}
+	
+	public static StackPane loadBackground() {
+		StackPane pane = new StackPane();
+		Rectangle r1 = new Rectangle();
+		r1.setFill(Color.GRAY);
+		r1.widthProperty().bind(pane.widthProperty());
+		r1.heightProperty().bind(pane.heightProperty());
+		r1.setArcWidth(20);
+		r1.setArcHeight(20);
+		Rectangle r2 = new Rectangle();
+		r2.setFill(Color.LIGHTGRAY);
+		r2.setStroke(Color.BLACK);
+		r2.widthProperty().bind(r1.widthProperty().multiply(0.98));
+		r2.heightProperty().bind(r1.heightProperty().multiply(0.98));
+		r2.setArcWidth(20);
+		r2.setArcHeight(20);
+		pane.getChildren().add(r2);
+		return pane;
 	}
 
 	public static LinearGradient loadLg(CardType type) {
