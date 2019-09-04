@@ -14,12 +14,17 @@ public class PazaakCard extends Card {
 	private CardInfo info;
 	private boolean selected;
 
-	public PazaakCard(CardInfo info) { // Creates a Main/Plus/Minus Card
+	public PazaakCard(CardInfo info) {
 		this.info = info;
 		buildCard();
 	}
+	
+	public PazaakCard(int n) {
+		this.info = new CardInfo(n);
+		buildCard();
+	}
 
-	public PazaakCard() { // Creates a Main Card (Green Card)
+	public PazaakCard() {
 		info = new CardInfo();
 		buildCard();
 	}
