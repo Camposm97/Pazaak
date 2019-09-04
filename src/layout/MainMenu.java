@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import util.FXUtil;
 import util.ImgUtil;
+import util.Web;
 
 public class MainMenu extends BorderPane {
 	public MainMenu() {
@@ -25,17 +26,19 @@ public class MainMenu extends BorderPane {
 	}
 	
 	private VBox loadBtns() {
+		final Font font = Font.font(16);
 		Button btStart = new Button("Start");
 		btStart.setOnAction(e -> { getScene().setRoot(new SideDeckChooser()); });
 		btStart.prefWidthProperty().bind(widthProperty().multiply(0.25));
-		btStart.setFont(Font.font(16));
+		btStart.setFont(font);
 		Button btHelp = new Button("How to Play");
+		btHelp.setOnAction(e -> { Web.openThisRepo(); });
 		btHelp.prefWidthProperty().bind(widthProperty().multiply(0.25));
-		btHelp.setFont(Font.font(16));
+		btHelp.setFont(font);
 		Button btQuit = new Button("Quit");
 		btQuit.setOnAction(e -> { Platform.exit(); });
 		btQuit.prefWidthProperty().bind(widthProperty().multiply(0.25));
-		btQuit.setFont(Font.font(16));
+		btQuit.setFont(font);
 		VBox vBox = FXUtil.loadVBox(btStart, btHelp, btQuit);
 		vBox.setAlignment(Pos.CENTER);
 		return vBox;
