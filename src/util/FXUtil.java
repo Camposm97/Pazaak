@@ -24,18 +24,18 @@ public class FXUtil {
 		return vBox;
 	}
 
-	public static LinearGradient loadLg(CardType cardType) {
+	public static LinearGradient loadLg(CardType type) {
 		List<Stop> stops = new ArrayList<>();
-		if (cardType != null) {
-			if (cardType.equals(CardType.Plus)) {
+		if (type != null) {
+			if (type.equals(CardType.Plus)) {
 				stops.add(new Stop(0.1f, Color.DARKBLUE));
 				stops.add(new Stop(0.5f, Color.BLUE));
 				stops.add(new Stop(0.9f, Color.DARKBLUE));
-			} else if (cardType.equals(CardType.Minus)) {
+			} else if (type.equals(CardType.Minus)) {
 				stops.add(new Stop(0.1f, Color.DARKRED));
 				stops.add(new Stop(0.5f, Color.RED));
 				stops.add(new Stop(0.9f, Color.DARKRED));
-			} else {
+			} else { // Main Card
 				stops.add(new Stop(0.1f, Color.DARKGREEN));
 				stops.add(new Stop(0.5f, Color.LIME));
 				stops.add(new Stop(0.9f, Color.DARKGREEN));
