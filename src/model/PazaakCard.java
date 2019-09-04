@@ -33,18 +33,21 @@ public class PazaakCard extends Card {
 	}
 
 	private void buildCard() {
-		if (!info.getType().equals(CardType.Main)) {
-			setOnMouseClicked(e -> {
-				if (selected) {
-					r.setStroke(Color.BLACK);
-					selected = false;
-				} else {
-					r.setStroke(Color.YELLOW);
-					selected = true;
-				}
-			});
-		}
+		if (!info.getType().equals(CardType.Main))
+			initFunctions();
 		getChildren().add(buildDetails());
+	}
+	
+	private void initFunctions() {
+		setOnMouseClicked(e -> {
+			if (selected) {
+				r.setStroke(Color.BLACK);
+				selected = false;
+			} else {
+				r.setStroke(Color.YELLOW);
+				selected = true;
+			}
+		});
 	}
 
 	private VBox buildDetails() {

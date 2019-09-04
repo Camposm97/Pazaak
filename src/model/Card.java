@@ -16,6 +16,6 @@ public class Card extends StackPane {
 		r.setStroke(Color.BLACK);
 		r.setArcWidth(ARC_SIZE);
 		r.setArcHeight(ARC_SIZE);
-		getChildren().add(r);
+		getChildren().add(r); // Add Background of Card
 	}
 }
