@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -26,7 +27,15 @@ public class FXUtil {
 		return vBox;
 	}
 	
-	public static StackPane loadBackground() {
+	public static HBox loadHBox(Node...nodes) {
+		HBox hBox = new HBox(10);
+		for (Node n : nodes) {
+			hBox.getChildren().add(n);
+		}
+		return hBox;
+	}
+	
+	public static StackPane loadDecor() {
 		StackPane pane = new StackPane();
 		Rectangle r1 = new Rectangle();
 		r1.setFill(Color.GRAY);
