@@ -61,7 +61,7 @@ public class DeckPickerPane extends BorderPane {
 		hBox.getChildren().addAll(tf1, tf2);
 		
 		StackPane topPane = new StackPane();
-		topPane.getChildren().addAll(FXUtil.loadBackground(), hBox);
+		topPane.getChildren().addAll(FXUtil.loadDecor(), hBox);
 		return topPane;
 	}
 }
