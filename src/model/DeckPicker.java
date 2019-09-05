@@ -40,7 +40,7 @@ public class DeckPicker {
 			for (int j = 0; j < cardMatrix.colLength(); j++)
 				gridPane.add(cardMatrix.get(i, j), j, i);
 		StackPane centerPane = new StackPane();
-		centerPane.getChildren().addAll(FXUtil.loadBackground(), gridPane);
+		centerPane.getChildren().addAll(FXUtil.loadDecor(), gridPane);
 		return centerPane;
 	}
 }
