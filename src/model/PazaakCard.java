@@ -40,14 +40,14 @@ public class PazaakCard extends Card {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 		if (selected) {
-			r.setStroke(Color.BLACK);
-		} else {
 			r.setStroke(Color.YELLOW);
+		} else {
+			r.setStroke(Color.BLACK);
 		}
 	}
 
 	private void buildCard() {
-		if (!info.getType().equals(CardType.Main))
+		if (!info.getType().equals(CardType.Main)) {
 			setOnMouseClicked(e -> {
 				if (selected) {
 					r.setStroke(Color.BLACK);
@@ -57,6 +57,7 @@ public class PazaakCard extends Card {
 					setSelected(true);
 				}
 			});
+		}
 		getChildren().add(buildDetails());
 	}
 
