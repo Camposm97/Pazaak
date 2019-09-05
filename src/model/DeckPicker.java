@@ -7,6 +7,7 @@ import javafx.scene.layout.StackPane;
 import util.FXUtil;
 
 public class DeckPicker {
+	public static final int DECK_SIZE = 4;
 	private static final int ROW_SIZE = 2, COL_SIZE = 6;
 	private CardMatrix cardMatrix;
 	
@@ -25,6 +26,10 @@ public class DeckPicker {
 		}
 	}
 	
+	public PazaakCard[] getPickedCards() {
+		return cardMatrix.getSelectedCards(DECK_SIZE);
+	}
+	
 	public StackPane loadGridPane() {
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.TOP_CENTER);
@@ -37,9 +42,5 @@ public class DeckPicker {
 		StackPane centerPane = new StackPane();
 		centerPane.getChildren().addAll(FXUtil.loadBackground(), gridPane);
 		return centerPane;
-	}
-	
-	public CardMatrix getCardMatrix() {
-		return cardMatrix;
 	}
 }

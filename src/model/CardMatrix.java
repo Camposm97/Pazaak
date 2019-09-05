@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class CardMatrix {
 	private Card[][] arr;
 	private int nRow, nCol, rowSize, colSize;
@@ -22,14 +20,20 @@ public class CardMatrix {
 		}
 	}
 	
-	public ArrayList<Card> getPickedCards() {
-		ArrayList<Card> list = new ArrayList<>();
-		for (Card[] cards : arr) {
-			for (Card c : cards) {
-				
-			}
+	public PazaakCard[] getSelectedCards(int size) {
+		int i = 0;
+		PazaakCard[] chosenOnes = new PazaakCard[size];
+		try {
+			for (Card[] cards : arr)
+				for (Card c : cards)
+					if (((PazaakCard)(c)).isSelected())
+						chosenOnes[i++] = (PazaakCard) c;
+			if(i != size)
+				return null;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return null;
 		}
-		return list;
+		return chosenOnes;
 	}
 	
 	public Card get(int row, int col) {
