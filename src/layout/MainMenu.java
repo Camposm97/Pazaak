@@ -24,11 +24,11 @@ public class MainMenu extends BorderPane {
 	}
 	
 	private VBox loadBoxOfBtns() {
-		Button btStart = new Button("Start");
+		Button btStart = new Button("Start Game");
 		btStart.setOnAction(e -> { getScene().setRoot(new DeckPickerPane()); });
 		Button btHelp = new Button("How to Play");
 		btHelp.setOnAction(e -> { Web.openThisRepo(); });
-		Button btQuit = new Button("Quit");
+		Button btQuit = new Button("Exit Game");
 		btQuit.setOnAction(e -> { Platform.exit(); });
 		editBtns(btStart, btHelp, btQuit);
 		VBox vBox = FXUtil.loadVBox(btStart, btHelp, btQuit);

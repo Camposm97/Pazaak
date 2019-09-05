@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 import util.FXUtil;
 
 public class DeckPicker {
-	public static final int DECK_SIZE = 4;
+	public static final int DECK_SIZE = 10;
 	private static final int ROW_SIZE = 2, COL_SIZE = 6;
 	private CardMatrix cardMatrix;
 	
@@ -30,12 +30,12 @@ public class DeckPicker {
 		return cardMatrix.getSelectedCards(DECK_SIZE);
 	}
 	
-	public StackPane loadGridPane() {
+	public StackPane loadPane() {
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setPadding(new Insets(30));
-		gridPane.setHgap(30);
-		gridPane.setVgap(30);
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
 		for (int i = 0; i < cardMatrix.rowLength(); i++)
 			for (int j = 0; j < cardMatrix.colLength(); j++)
 				gridPane.add(cardMatrix.get(i, j), j, i);

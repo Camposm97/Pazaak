@@ -1,19 +1,15 @@
 package layout;
 
+import event.StartGameHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.stage.StageStyle;
 import model.DeckPicker;
-import model.PazaakCard;
 import util.FXUtil;
 
 public class DeckPickerPane extends BorderPane {
@@ -22,35 +18,26 @@ public class DeckPickerPane extends BorderPane {
 	public DeckPickerPane() {
 		deckPicker = new DeckPicker();
 		setTop(loadTopPane());
-		setCenter(deckPicker.loadGridPane());
+		setCenter(deckPicker.loadPane());
 		setBottom(loadBottomPane());
 		setPadding(FXUtil.DEFAULT_INSETS);
 	}
 	
+	public DeckPicker getDeckPicker() {
+		return deckPicker;
+	}
+	
 	private ButtonBar loadBottomPane() {
+		final int btnWidth = 256;
+		final Font font = Font.font(16);
 		Button btCont = new Button("Continue");
-		btCont.setPrefWidth(256);
-		btCont.setFont(Font.font(16));
-		btCont.setOnAction(e -> {
-			PazaakCard[] deck = deckPicker.getPickedCards();
-			if (deck != null) {
-				System.out.println("Starting Game...");
-			} else {
-				Alert a = new Alert(AlertType.ERROR);
-				
-				a.setHeaderText("Your deck is not complete!");
-				a.setContentText("You have to pick " + DeckPicker.DECK_SIZE + " cards");
-				a.initStyle(StageStyle.UNDECORATED);
-				a.initOwner(getScene().getWindow());
-				a.showAndWait();
-			}
-		});
+		btCont.setPrefWidth(btnWidth);
+		btCont.setFont(font);
+		btCont.setOnAction(new StartGameHandler(this));
 		Button btBack = new Button("Go Back");
-		btBack.setPrefWidth(256);
-		btBack.setFont(Font.font(16));
-		btBack.setOnAction(e -> {
-			getScene().setRoot(new MainMenu());
-		});
+		btBack.setPrefWidth(btnWidth);
+		btBack.setFont(font);
+		btBack.setOnAction(e -> { getScene().setRoot(new MainMenu()); });
 		ButtonBar btBar = new ButtonBar();
 		btBar.getButtons().addAll(btBack, btCont);
 		return btBar;
