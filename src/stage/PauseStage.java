@@ -33,6 +33,7 @@ public class PauseStage extends Stage {
 		btExit.setFont(Font.font(FONT_SIZE));
 		btExit.setOnAction(h -> {
 			this.close();
+			this.getOwner().getScene().setOnKeyPressed(null);
 			this.getOwner().getScene().setRoot(new MainMenu());
 		});
 		VBox vBox = FXUtil.loadVBox(lbl, btRs, btExit);
