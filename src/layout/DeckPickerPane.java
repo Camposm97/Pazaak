@@ -1,11 +1,17 @@
 package layout;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.stage.StageStyle;
 import model.DeckPicker;
 import model.PazaakCard;
 import util.FXUtil;
@@ -18,21 +24,36 @@ public class DeckPickerPane extends BorderPane {
 		setTop(loadTopPane());
 		setCenter(deckPicker.loadGridPane());
 		setBottom(loadBottomPane());
+		setPadding(FXUtil.DEFAULT_INSETS);
 	}
 	
-	private StackPane loadBottomPane() {
-		Button bt = new Button("Start Game");
-		bt.setOnAction(e -> {
+	private ButtonBar loadBottomPane() {
+		Button btCont = new Button("Continue");
+		btCont.setPrefWidth(256);
+		btCont.setFont(Font.font(16));
+		btCont.setOnAction(e -> {
 			PazaakCard[] deck = deckPicker.getPickedCards();
 			if (deck != null) {
 				System.out.println("Starting Game...");
 			} else {
-				System.out.println("ERROR");
+				Alert a = new Alert(AlertType.ERROR);
+				
+				a.setHeaderText("Your deck is not complete!");
+				a.setContentText("You have to pick " + DeckPicker.DECK_SIZE + " cards");
+				a.initStyle(StageStyle.UNDECORATED);
+				a.initOwner(getScene().getWindow());
+				a.showAndWait();
 			}
 		});
-		StackPane pane = new StackPane(bt);
-		pane.setPadding(FXUtil.DEFAULT_INSETS);
-		return pane;
+		Button btBack = new Button("Go Back");
+		btBack.setPrefWidth(256);
+		btBack.setFont(Font.font(16));
+		btBack.setOnAction(e -> {
+			getScene().setRoot(new MainMenu());
+		});
+		ButtonBar btBar = new ButtonBar();
+		btBar.getButtons().addAll(btBack, btCont);
+		return btBar;
 	}
 	
 	private StackPane loadTopPane() {
