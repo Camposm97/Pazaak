@@ -1,5 +1,6 @@
 package layout.game_table;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
@@ -7,19 +8,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import model.Align;
 import model.PazaakCard;
 import util.FXUtil;
 
-public class GameTable extends StackPane {
+public class GameBoard extends StackPane {
 	private BorderPane root;
 	private StackPane topPane, bottomPane;
-	private VBox leftPane, rightPane;
+	private ScoreBoard s1, s2;
 	private GridPane centerPane;
 	private PazaakCard[] deck;
 	
-	public GameTable(PazaakCard[] deck) {
+	public GameBoard(PazaakCard[] deck) {
 		super(FXUtil.loadDecor());
 		this.deck = deck;
 		buildRoom();
@@ -31,8 +31,8 @@ public class GameTable extends StackPane {
 		buildLeftPane();
 		buildRightPane();
 		buildCenterPane();
-		root = new BorderPane(centerPane, topPane, rightPane, bottomPane, leftPane);
-		root.setPadding(FXUtil.DEFAULT_INSETS);
+		root = new BorderPane(centerPane, topPane, s2, bottomPane, s1);
+		root.setPadding(new Insets(20));
 		this.getChildren().add(root);
 	}
 	
@@ -45,7 +45,6 @@ public class GameTable extends StackPane {
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(FXUtil.DEFAULT_INSETS);
 		topPane = new StackPane(FXUtil.loadDecor(), hBox);
-		topPane.setPadding(FXUtil.DEFAULT_INSETS);
 	}
 	
 	public void buildBottomPane() {
@@ -53,13 +52,11 @@ public class GameTable extends StackPane {
 	}
 	
 	public void buildLeftPane() {
-		leftPane = new VBox(10);
-		leftPane.getChildren().addAll(FXUtil.loadDecor());
+		s1 = new ScoreBoard();
 	}
 	
 	public void buildRightPane() {
-		rightPane = new VBox(10);
-		rightPane.getChildren().addAll(FXUtil.loadDecor());
+		s2 = new ScoreBoard();
 	}
 	
 	public void buildCenterPane() {

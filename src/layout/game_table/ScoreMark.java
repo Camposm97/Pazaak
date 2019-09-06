@@ -4,12 +4,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class ScoreToken extends StackPane {
+public class ScoreMark extends StackPane {
 	private static final int RADIUS = 25;
 	private Circle c1, c2;
 	private boolean flipped;
 	
-	public ScoreToken() {
+	public ScoreMark() {
 		c1 = new Circle(RADIUS * 1.5);
 		c1.setStrokeWidth(2.0);
 		c1.setStroke(Color.BLACK);
@@ -19,7 +19,6 @@ public class ScoreToken extends StackPane {
 		c2.setStroke(Color.BLACK);
 		c2.setFill(Color.GRAY);
 		getChildren().addAll(c1, c2);
-		flip();
 	}
 	
 	public void flip() {
