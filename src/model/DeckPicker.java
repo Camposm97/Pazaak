@@ -11,8 +11,24 @@ public class DeckPicker {
 	private static final int ROW_SIZE = 2, COL_SIZE = 6;
 	private CardMatrix cardMatrix;
 	
+	public static PazaakCard[] getRandomDeck() {
+		PazaakCard[] deck = new PazaakCard[DECK_SIZE];
+		int i = 0;
+		while (i < 10) {
+			int n = (int)(Math.random() * (6 - ((int)(Math.random() * 6)))) - 6;
+			if (n != 0)
+				deck[i++] = new PazaakCard(n);
+		}
+		System.out.println(deck.length);
+		return deck;
+	}
+	
 	public DeckPicker() {
-		cardMatrix = new CardMatrix(ROW_SIZE, COL_SIZE);
+		cardMatrix = loadCardMatrix();
+	}
+	
+	public CardMatrix loadCardMatrix() {
+		CardMatrix cardMatrix = new CardMatrix(ROW_SIZE, COL_SIZE);
 		int n = 1;
 		for (int i = 0; i < cardMatrix.rowLength(); i++) {
 			for (int j = 0; j < cardMatrix.colLength(); j++) {
@@ -24,6 +40,7 @@ public class DeckPicker {
 			}
 			n = -1;
 		}
+		return cardMatrix;
 	}
 	
 	public PazaakCard[] getPickedCards() {
