@@ -10,10 +10,10 @@ import model.PazaakCard;
 public class Demo extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
-		PazaakCard[] deck = DeckPicker.getRandomDeck();
+		PazaakCard[] deck = DeckPicker.pickRandomDeck();
 		Scene scene = new Scene(new GameBoard(deck));
 		stage.setScene(scene);
-		stage.setFullScreen(true);
+		stage.setFullScreen(true); 
 		stage.show();
 		
     }
