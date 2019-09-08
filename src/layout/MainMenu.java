@@ -18,7 +18,7 @@ public class MainMenu extends BorderPane {
 		Label lblTitle = new Label(App.TITLE);
 		lblTitle.setPadding(FXUtil.DEFAULT_INSETS);
 		lblTitle.setFont(Font.font(64));
-		lblTitle.setGraphic(ImgUtil.loadImgV(ImgUtil.ICON_PAZAAK, 0.5));	
+//		lblTitle.setGraphic(ImgUtil.loadImgV(ImgUtil.ICON_PAZAAK, 0.5));	
 		setTop(new StackPane(lblTitle));
 		setCenter(loadBoxOfBtns());
 	}

@@ -5,7 +5,6 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import model.Align;
@@ -14,25 +13,24 @@ import util.FXUtil;
 
 public class GameBoard extends StackPane {
 	private BorderPane root;
-	private StackPane topPane, bottomPane;
+	private StackPane topPane, bottomPane, centerPane;
 	private ScoreBoard s1, s2;
-	private GridPane centerPane;
-	private Hand hand;
+	private Hand hand1;
 	
 	public GameBoard(Hand hand) {
 		super(FXUtil.loadDecor());
-		this.hand = hand;
-		buildRoom();
+		this.hand1 = hand;
+		buildBoard();
 	}
 	
-	public void buildRoom() {
+	public void buildBoard() {
 		buildTopPane();
 		buildBottomPane();
-		s1 = new ScoreBoard();
-		s2 = new ScoreBoard();
+		s1 = new ScoreBoard(); // Left Pane
+		s2 = new ScoreBoard(); // Right Pane
 		buildCenterPane();
 		root = new BorderPane(centerPane, topPane, s2, bottomPane, s1);
-		root.setPadding(new Insets(20));
+		root.setPadding(new Insets(10));
 		this.getChildren().add(root);
 	}
 	
@@ -49,21 +47,21 @@ public class GameBoard extends StackPane {
 	
 	public void buildBottomPane() {
 		bottomPane = new StackPane(FXUtil.loadDecor());
-		HBox hBox = new HBox(10);
-		hBox.setAlignment(Pos.CENTER);
 		Separator sep = new Separator(Orientation.VERTICAL);
-		GridPane gridPane1 = new GridPane();
-		gridPane1.setPadding(new Insets(50));
-		gridPane1.setHgap(10);
-		gridPane1.setVgap(10);
-		for (int i = 0; i < hand.getCards().size(); i++) {
-			gridPane1.add(hand.getCards().get(i), i, 0);
-		}
-		hBox.getChildren().addAll(gridPane1, sep);
+		HandPane handPane1 = new HandPane(hand1);
+		HBox hBox = FXUtil.loadHBox(handPane1, sep);
+		hBox.setAlignment(Pos.CENTER);
+		hBox.setPadding(FXUtil.DEFAULT_INSETS);
 		bottomPane.getChildren().add(hBox);
 	}
 	
 	public void buildCenterPane() {
-		centerPane = new GridPane();
+		centerPane = new StackPane(FXUtil.loadDecor());
+		Separator sep = new Separator(Orientation.VERTICAL);
+		sep.prefHeightProperty().bind(centerPane.heightProperty());
+		HBox hBox = FXUtil.loadHBox(sep);
+		hBox.setAlignment(Pos.CENTER);
+		hBox.setPadding(FXUtil.DEFAULT_INSETS);
+		centerPane.getChildren().add(hBox);
 	}
 }

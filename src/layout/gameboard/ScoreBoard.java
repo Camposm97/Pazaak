@@ -1,6 +1,5 @@
 package layout.gameboard;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -16,7 +15,7 @@ public class ScoreBoard extends StackPane {
 		this.record = new ScoreRecorder();
 		VBox vBox = FXUtil.loadVBox(record.getScores());
 		vBox.setAlignment(Pos.CENTER);
-		vBox.setPadding(new Insets(15));
+		vBox.setPadding(FXUtil.DEFAULT_INSETS);
 		getChildren().add(vBox);
 	}
 }
