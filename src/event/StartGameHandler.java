@@ -8,8 +8,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.stage.StageStyle;
 import layout.DeckPickerPane;
-import layout.game_table.GameBoard;
+import layout.gameboard.GameBoard;
 import model.DeckPicker;
+import model.Hand;
 import model.PazaakCard;
 import stage.PauseStage;
 
@@ -25,7 +26,7 @@ public class StartGameHandler implements EventHandler<ActionEvent> {
 		PazaakCard[] deck = pane.getDeckPicker().getPickedCards();
 		if (deck != null) {
 			Scene scene = pane.getScene();
-			scene.setRoot(new GameBoard(deck));
+			scene.setRoot(new GameBoard(new Hand(deck)));
 			scene.setOnKeyPressed(f -> {
 				if (f.getCode() == KeyCode.ESCAPE)
 					new PauseStage(scene.getWindow());

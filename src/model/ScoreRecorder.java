@@ -1,6 +1,6 @@
 package model;
 
-import layout.game_table.ScoreMark;
+import layout.gameboard.ScoreMark;
 
 public class ScoreRecorder {
 	private static final int SIZE = 3;

@@ -15,8 +15,9 @@ public class DeckPicker {
 		PazaakCard[] deck = new PazaakCard[DECK_SIZE];
 		int i = 0;
 		while (i < 10) {
-			int n = (int)(Math.random() * (6 - ((int)(Math.random() * 6)))) - 6;
-			if ((int)(Math.random() * (6 - ((int)(Math.random() * 6)))) - 6 != 0)
+			int n = (int) (Math.random() * 6) + 1;
+			n = n - ((int) (Math.random() * (2 * n)) + 1);
+			if (n != 0)
 				deck[i++] = new PazaakCard(n);
 		}
 		return deck;

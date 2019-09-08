@@ -1,4 +1,4 @@
-package layout.game_table;
+package layout.gameboard;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;

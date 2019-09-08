@@ -1,4 +1,4 @@
-package layout.game_table;
+package layout.gameboard;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;

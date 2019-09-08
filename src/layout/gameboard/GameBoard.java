@@ -1,4 +1,4 @@
-package layout.game_table;
+package layout.gameboard;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import model.Align;
-import model.PazaakCard;
+import model.Hand;
 import util.FXUtil;
 
 public class GameBoard extends StackPane {
@@ -17,19 +17,19 @@ public class GameBoard extends StackPane {
 	private StackPane topPane, bottomPane;
 	private ScoreBoard s1, s2;
 	private GridPane centerPane;
-	private PazaakCard[] deck;
+	private Hand hand;
 	
-	public GameBoard(PazaakCard[] deck) {
+	public GameBoard(Hand hand) {
 		super(FXUtil.loadDecor());
-		this.deck = deck;
+		this.hand = hand;
 		buildRoom();
 	}
 	
 	public void buildRoom() {
 		buildTopPane();
 		buildBottomPane();
-		buildLeftPane();
-		buildRightPane();
+		s1 = new ScoreBoard();
+		s2 = new ScoreBoard();
 		buildCenterPane();
 		root = new BorderPane(centerPane, topPane, s2, bottomPane, s1);
 		root.setPadding(new Insets(20));
@@ -49,14 +49,18 @@ public class GameBoard extends StackPane {
 	
 	public void buildBottomPane() {
 		bottomPane = new StackPane(FXUtil.loadDecor());
-	}
-	
-	public void buildLeftPane() {
-		s1 = new ScoreBoard();
-	}
-	
-	public void buildRightPane() {
-		s2 = new ScoreBoard();
+		HBox hBox = new HBox(10);
+		hBox.setAlignment(Pos.CENTER);
+		Separator sep = new Separator(Orientation.VERTICAL);
+		GridPane gridPane1 = new GridPane();
+		gridPane1.setPadding(new Insets(50));
+		gridPane1.setHgap(10);
+		gridPane1.setVgap(10);
+		for (int i = 0; i < hand.getCards().size(); i++) {
+			gridPane1.add(hand.getCards().get(i), i, 0);
+		}
+		hBox.getChildren().addAll(gridPane1, sep);
+		bottomPane.getChildren().add(hBox);
 	}
 	
 	public void buildCenterPane() {
