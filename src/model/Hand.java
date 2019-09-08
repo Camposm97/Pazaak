@@ -22,6 +22,10 @@ public class Hand {
 		this.cards = drawCards(deck);
 	}
 	
+	public Hand() {
+		this.cards = drawCards(DeckPicker.pickRandomDeck());
+	}
+	
 	public List<PazaakCard> getCards() {
 		return cards;
 	}

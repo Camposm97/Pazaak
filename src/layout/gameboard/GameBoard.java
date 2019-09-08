@@ -15,11 +15,13 @@ public class GameBoard extends StackPane {
 	private BorderPane root;
 	private StackPane topPane, bottomPane, centerPane;
 	private ScoreBoard s1, s2;
-	private Hand hand1;
+	private HandPane handPane1;
+	private HandPane handPane2;
 	
 	public GameBoard(Hand hand) {
 		super(FXUtil.loadDecor());
-		this.hand1 = hand;
+		this.handPane1 = new HandPane(hand);
+		this.handPane2 = new HandPane(new Hand());
 		buildBoard();
 	}
 	
@@ -48,8 +50,7 @@ public class GameBoard extends StackPane {
 	public void buildBottomPane() {
 		bottomPane = new StackPane(FXUtil.loadDecor());
 		Separator sep = new Separator(Orientation.VERTICAL);
-		HandPane handPane1 = new HandPane(hand1);
-		HBox hBox = FXUtil.loadHBox(handPane1, sep);
+		HBox hBox = FXUtil.loadHBox(handPane1, sep, handPane2);
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(FXUtil.DEFAULT_INSETS);
 		bottomPane.getChildren().add(hBox);
@@ -59,7 +60,8 @@ public class GameBoard extends StackPane {
 		centerPane = new StackPane(FXUtil.loadDecor());
 		Separator sep = new Separator(Orientation.VERTICAL);
 		sep.prefHeightProperty().bind(centerPane.heightProperty());
-		HBox hBox = FXUtil.loadHBox(sep);
+		HBox hBox = FXUtil.loadHBox(handPane1.getPlayField(), sep, handPane2.getPlayField());
+		hBox.setSpacing(100);
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(FXUtil.DEFAULT_INSETS);
 		centerPane.getChildren().add(hBox);
