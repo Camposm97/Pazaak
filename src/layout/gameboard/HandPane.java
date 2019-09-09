@@ -2,6 +2,7 @@ package layout.gameboard;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
+import model.Card;
 import model.Hand;
 import model.PazaakCard;
 import util.FXUtil;
@@ -26,8 +27,8 @@ public class HandPane extends GridPane {
 				playField.add(pc);
 				pc.setOnMouseClicked(null);
 			});
+			super.add(new Card(), i, 0);
 			super.add(hand.getCards().get(i), i, 0);
-			
 		}
 	}
 	

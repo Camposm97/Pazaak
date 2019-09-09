@@ -18,7 +18,7 @@ public class DeckPickerPane extends BorderPane {
 	public DeckPickerPane() {
 		deckPicker = new DeckPicker();
 		setTop(loadTopPane());
-		setCenter(deckPicker.loadPane());
+		setCenter(deckPicker.loadPickerPane());
 		setBottom(loadBottomPane());
 		setPadding(FXUtil.DEFAULT_INSETS);
 	}

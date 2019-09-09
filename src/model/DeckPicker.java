@@ -47,7 +47,7 @@ public class DeckPicker {
 		return cardMatrix.getSelectedCards(DECK_SIZE);
 	}
 	
-	public StackPane loadPane() {
+	public StackPane loadPickerPane() {
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		gridPane.setPadding(new Insets(30));

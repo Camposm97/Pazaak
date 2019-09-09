@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import layout.gameboard.GameBoard;
-import model.DeckPicker;
 import model.Hand;
-import model.PazaakCard;
 
 public class Demo extends Application {
 	@Override

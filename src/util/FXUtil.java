@@ -38,19 +38,26 @@ public class FXUtil {
 	public static StackPane loadDecor() {
 		StackPane pane = new StackPane();
 		Rectangle r1 = new Rectangle();
-		r1.setFill(Color.GRAY);
-		r1.widthProperty().bind(pane.widthProperty());
-		r1.heightProperty().bind(pane.heightProperty());
+		r1.setFill(Color.LIGHTGRAY);
+		r1.setStroke(Color.BLACK);
+		r1.widthProperty().bind(pane.widthProperty().multiply(0.98));
+		r1.heightProperty().bind(pane.heightProperty().multiply(0.98));
 		r1.setArcWidth(20);
 		r1.setArcHeight(20);
-		Rectangle r2 = new Rectangle();
-		r2.setFill(Color.LIGHTGRAY);
-		r2.setStroke(Color.BLACK);
-		r2.widthProperty().bind(r1.widthProperty().multiply(0.98));
-		r2.heightProperty().bind(r1.heightProperty().multiply(0.98));
-		r2.setArcWidth(20);
-		r2.setArcHeight(20);
-		pane.getChildren().add(r2);
+		pane.getChildren().addAll(r1);
+		return pane;
+	}
+	
+	public static StackPane loadDecor(int percent) {
+		StackPane pane = new StackPane();
+		Rectangle r1 = new Rectangle();
+		r1.setFill(Color.LIGHTGRAY);
+		r1.setStroke(Color.BLACK);
+		r1.widthProperty().bind(pane.widthProperty().multiply(percent));
+		r1.heightProperty().bind(pane.heightProperty().multiply(percent));
+		r1.setArcWidth(20);
+		r1.setArcHeight(20);
+		pane.getChildren().addAll(r1);
 		return pane;
 	}
 
@@ -71,11 +78,11 @@ public class FXUtil {
 				stops.add(new Stop(0.9f, Color.DARKGREEN));
 			}
 		} else {
-			stops.add(new Stop(0.1f, Color.DIMGRAY));
-			stops.add(new Stop(0.5f, Color.LIGHTGRAY));
-			stops.add(new Stop(0.9f, Color.DIMGRAY));
+			stops.add(new Stop(0.25f, Color.DARKGRAY));
+			stops.add(new Stop(0.5f, Color.WHITE));
+			stops.add(new Stop(0.75f, Color.DARKGRAY));
 		}
-		LinearGradient lg = new LinearGradient(0, 0, 1, 0, true, CycleMethod.REFLECT, stops);
+		LinearGradient lg = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
 		return lg;
 	}
 }

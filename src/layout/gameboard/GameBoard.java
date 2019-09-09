@@ -19,7 +19,7 @@ public class GameBoard extends StackPane {
 	private HandPane handPane2;
 	
 	public GameBoard(Hand hand) {
-		super(FXUtil.loadDecor());
+		super(FXUtil.loadDecor(1));
 		this.handPane1 = new HandPane(hand);
 		this.handPane2 = new HandPane(new Hand());
 		buildBoard();
