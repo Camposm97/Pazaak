@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import model.Align;
 import model.Hand;
+import model.PazaakCard;
 import model.Player;
 import util.FXUtil;
 
@@ -20,9 +21,9 @@ public class GameBoard extends StackPane {
 	public GameBoard(Hand hand) {
 		super(FXUtil.loadDecor(1));
 		this.p1 = new Player("You", hand);
+		p1.getHandPane().getCs().add(new PazaakCard());
 		this.p2 = new Player("Opponent", new Hand());
 		p2.hideCards();
-//		p2.getHandPane().setDisable(true);
 		buildBoard();
 	}
 	

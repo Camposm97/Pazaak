@@ -9,14 +9,20 @@ import javafx.scene.text.Text;
 import model.PazaakCard;
 
 public class CardScore extends StackPane {
-	private int sum;
+	private int totalScore;
+	private TurnIndicator ti;
 	private Text t;
 	private PlayField playField;
 	
 	public CardScore() {
-		this.sum = 0;
+		this.totalScore = 0;
+		this.ti = new TurnIndicator();
 		this.playField = new PlayField();
 		build();
+	}
+	
+	public TurnIndicator getTi() {
+		return ti;
 	}
 	
 	public PlayField getPlayField() {
@@ -24,15 +30,15 @@ public class CardScore extends StackPane {
 	}
 	
 	public void add(PazaakCard pc) {
-		sum += pc.getInfo().getNum();
-		t.setText(String.valueOf(sum));
+		totalScore += pc.getInfo().getNum();
+		t.setText(String.valueOf(totalScore));
 		playField.add(pc);
 	}
 	
 	private void build() {
 		double arc = NamePane.HEIGHT;
 		Font font = Font.font(NamePane.WIDTH * 0.05);
-		t = new Text(String.valueOf(sum));
+		t = new Text(String.valueOf(totalScore));
 		t.setFill(Color.WHITE);
 		t.setFont(font);
 		Rectangle r = new Rectangle(NamePane.HEIGHT * 1.5, NamePane.HEIGHT);

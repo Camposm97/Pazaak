@@ -8,13 +8,11 @@ import layout.gameboard.ScoreBoard;
 import layout.gameboard.TurnIndicator;
 
 public class Player {
-	private TurnIndicator ti;
 	private NamePane namePane;
 	private ScoreBoard scoreBoard;
 	private HandPane handPane;
 	
 	public Player(String name, Hand hand) {
-		this.ti = new TurnIndicator();
 		this.namePane = new NamePane(name);
 		this.scoreBoard = new ScoreBoard();
 		this.handPane = new HandPane(hand);
@@ -24,9 +22,9 @@ public class Player {
 		HBox hBox = new HBox(10);
 		hBox.setAlignment(Pos.CENTER);
 		if (a.equals(Align.LEFT))
-			hBox.getChildren().addAll(ti, namePane.build(a), handPane.getCs());
+			hBox.getChildren().addAll(handPane.getCs().getTi(), namePane.build(a), handPane.getCs());
 		else
-			hBox.getChildren().addAll(handPane.getCs(), namePane.build(a), ti);
+			hBox.getChildren().addAll(handPane.getCs(), namePane.build(a), handPane.getCs().getTi());
 		return hBox;
 	}
 	

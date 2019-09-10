@@ -2,29 +2,29 @@ package model;
 
 import layout.gameboard.ScoreMark;
 
-public class ScoreRecorder {
+public class Scores {
 	private static final int SIZE = 3;
-	private ScoreMark[] scores;
+	private ScoreMark[] arr;
 	private int nElems;
 	
-	public ScoreRecorder() {
-		scores = new ScoreMark[SIZE];
-		for (int i = 0; i < scores.length; i++) {
-			scores[i] = new ScoreMark();
+	public Scores() {
+		arr = new ScoreMark[SIZE];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = new ScoreMark();
 		}
 		nElems = 0;
 	}
 	
 	public ScoreMark[] getScores() {
-		return scores;
+		return arr;
 	}
 	
 	public void setAWin() {
-		scores[nElems++].flip();
+		arr[nElems++].flip();
 	}
 	
 	public boolean wonAll() {
-		for (ScoreMark s : scores) {
+		for (ScoreMark s : arr) {
 			if (!s.isFlipped())
 				return false;
 		}

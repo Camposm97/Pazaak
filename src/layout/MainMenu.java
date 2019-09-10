@@ -10,7 +10,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import util.FXUtil;
-import util.ImgUtil;
 import util.Web;
 
 public class MainMenu extends BorderPane {
