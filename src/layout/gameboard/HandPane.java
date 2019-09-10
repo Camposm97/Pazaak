@@ -8,35 +8,44 @@ import model.PazaakCard;
 import util.FXUtil;
 
 public class HandPane extends GridPane {
-	private PlayField playField;
+	private CardScore cs;
 	private Hand hand;
-	
+
 	public HandPane(Hand hand) {
-		this.playField = new PlayField();
+		this.cs = new CardScore();
 		this.hand = hand;
 		this.setHgap(10);
 		this.setVgap(10);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(FXUtil.DEFAULT_INSETS);
-		
-		// Display Cards
+		displayCards();
+	}
+
+	public CardScore getCs() {
+		return cs;
+	}
+
+	public Hand getHand() {
+		return hand;
+	}
+
+	public void hideCards() {
 		for (int i = 0; i < hand.getCards().size(); i++) {
-			PazaakCard pc  = hand.getCards().get(i);
+			super.add(new Card(), i, 0);
+		}
+	}
+
+	private void displayCards() {
+		// Display Cards From Hand & Place Holders
+		for (int i = 0; i < hand.getCards().size(); i++) {
+			PazaakCard pc = hand.getCards().get(i);
 			pc.setOnMouseClicked(e -> {
 				super.getChildren().remove(pc);
-				playField.add(pc);
+				cs.add(pc);
 				pc.setOnMouseClicked(null);
 			});
 			super.add(new Card(), i, 0);
 			super.add(hand.getCards().get(i), i, 0);
 		}
-	}
-	
-	public PlayField getPlayField() {
-		return playField;
-	}
-	
-	public Hand getHand() {
-		return hand;
 	}
 }

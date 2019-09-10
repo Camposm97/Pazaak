@@ -10,11 +10,23 @@ import model.PazaakCard;
 
 public class CardScore extends StackPane {
 	private int sum;
-	private Text t; 
+	private Text t;
+	private PlayField playField;
 	
 	public CardScore() {
 		this.sum = 0;
+		this.playField = new PlayField();
 		build();
+	}
+	
+	public PlayField getPlayField() {
+		return playField;
+	}
+	
+	public void add(PazaakCard pc) {
+		sum += pc.getInfo().getNum();
+		t.setText(String.valueOf(sum));
+		playField.add(pc);
 	}
 	
 	private void build() {
@@ -27,9 +39,5 @@ public class CardScore extends StackPane {
 		r.setArcWidth(arc);
 		r.setArcHeight(arc);
 		this.getChildren().addAll(r, t);
-	}
-	
-	public void add(PazaakCard pc) {
-		sum += pc.getInfo().getNum();
 	}
 }
