@@ -17,6 +17,10 @@ public class TurnIndicator extends Circle {
 		this.cs = cs;
 	}
 	
+	public void setStand(boolean stand) {
+		this.stand = stand;
+	}
+	
 	public void setAIMode(boolean aiMode) {
 		this.aiMode = aiMode;
 	}
@@ -31,7 +35,10 @@ public class TurnIndicator extends Circle {
 			setFill(Color.RED);
 			cs.add(new PazaakCard());
 			if (aiMode) {
-				
+				/*
+				 * Take the total card score and determine to end turn, stand, or
+				 * pick a card to +/- the total card score.  
+				 */
 			}
 		} else {
 			setFill(Color.DIMGRAY);
