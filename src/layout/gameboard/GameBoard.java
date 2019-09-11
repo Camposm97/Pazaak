@@ -8,62 +8,51 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import model.Align;
+import model.GameMaster;
 import model.Hand;
-import model.PazaakCard;
 import model.Player;
 import util.FXUtil;
 
 public class GameBoard extends StackPane {
 	private BorderPane root;
+	private GameMaster gm;
 	private StackPane topPane, bottomPane, centerPane;
-	private Player p1, p2;
 	
 	public GameBoard(Hand hand) {
 		super(FXUtil.loadDecor(1));
-		this.p1 = new Player("You", hand);
-		p1.getHandPane().getCs().add(new PazaakCard());
-		this.p2 = new Player("Opponent", new Hand());
-		p2.hideCards();
+		this.gm = new GameMaster(new Player("You", hand), new Player("Opponent", new Hand()));
 		buildBoard();
+		gm.startGame();
 	}
 	
 	public void buildBoard() {
-		buildTopPane();
-		buildBottomPane();
-		buildCenterPane();
-		root = new BorderPane(centerPane, topPane, p1.getScoreBoard(), bottomPane, p2.getScoreBoard());
+		// Build Top Pane
+		Separator s1 = new Separator(Orientation.VERTICAL);
+		HBox hBox1 = FXUtil.loadHBox(gm.getP1().getPlayerPane(Align.LEFT), s1, gm.getP2().getPlayerPane(Align.RIGHT));
+		hBox1.setAlignment(Pos.CENTER);
+		hBox1.setPadding(FXUtil.DEFAULT_INSETS);
+		topPane = new StackPane(FXUtil.loadDecor(), hBox1);
+		
+		// Build Bottom Pane
+		Separator s2 = new Separator(Orientation.VERTICAL);
+		HBox hBox2 = FXUtil.loadHBox(gm.getP1().getHandPane(), s2, gm.getP2().getHandPane());
+		hBox2.setAlignment(Pos.CENTER);
+		hBox2.setPadding(FXUtil.DEFAULT_INSETS);
+		bottomPane = new StackPane(FXUtil.loadDecor(), hBox2);
+
+		
+		// Build Center Pane
+		Separator s3 = new Separator(Orientation.VERTICAL);
+		HBox hBox3 = FXUtil.loadHBox(gm.getP1().getPlayField(), s3, gm.getP2().getPlayField());
+		hBox3.setSpacing(100);
+		hBox3.setAlignment(Pos.CENTER);
+		hBox3.setPadding(FXUtil.DEFAULT_INSETS);
+		centerPane = new StackPane(FXUtil.loadDecor(), hBox3);
+		s3.prefHeightProperty().bind(centerPane.heightProperty());
+
+		// Place the Built Panes onto root
+		root = new BorderPane(centerPane, topPane, gm.getP1().getScoreBoard(), bottomPane, gm.getP2().getScoreBoard());
 		root.setPadding(new Insets(10));
 		this.getChildren().add(root);
-	}
-	
-	public void buildTopPane() {
-		Separator s = new Separator();
-		s.setOrientation(Orientation.VERTICAL);
-		HBox hBox = FXUtil.loadHBox(p1.getPlayerPane(Align.LEFT), s, p2.getPlayerPane(Align.RIGHT));
-		hBox.setAlignment(Pos.CENTER);
-		hBox.setPadding(FXUtil.DEFAULT_INSETS);
-		topPane = new StackPane(FXUtil.loadDecor(), hBox);
-	}
-	
-	public void buildBottomPane() {
-		bottomPane = new StackPane(FXUtil.loadDecor());
-		Separator sep = new Separator(Orientation.VERTICAL);
-		HBox hBox = FXUtil.loadHBox(p1.getHandPane(), sep, p2.getHandPane());
-		hBox.setAlignment(Pos.CENTER);
-		hBox.setPadding(FXUtil.DEFAULT_INSETS);
-		bottomPane.getChildren().add(hBox);
-	}
-	
-	public void buildCenterPane() {
-		centerPane = new StackPane(FXUtil.loadDecor());
-		Separator sep = new Separator(Orientation.VERTICAL);
-		sep.prefHeightProperty().bind(centerPane.heightProperty());
-		HBox hBox = FXUtil.loadHBox(
-				p1.getHandPane().getCs().getPlayField(), sep, 
-				p2.getHandPane().getCs().getPlayField());
-		hBox.setSpacing(100);
-		hBox.setAlignment(Pos.CENTER);
-		hBox.setPadding(FXUtil.DEFAULT_INSETS);
-		centerPane.getChildren().add(hBox);
 	}
 }

@@ -7,16 +7,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.Align;
 
-public class NamePane {
+public class NamePane extends StackPane {
 	public static final double WIDTH = 640.0;
 	public static final double HEIGHT = WIDTH * 0.1;
-	private String name;
 
-	public NamePane(String name) {
-		this.name = name;
-	}
-
-	public StackPane build(Align a) {
+	public NamePane(String name, Align a) {
 		Font font = Font.font(WIDTH * 0.05);
 		double[] arr;
 		if (a.equals(Align.LEFT))
@@ -27,10 +22,6 @@ public class NamePane {
 		Text t1 = new Text(name);
 		t1.setFill(Color.WHITE);
 		t1.setFont(font);
-		return new StackPane(pg, t1);
-	}
-
-	public String getName() {
-		return name;
+		getChildren().addAll(pg, t1);
 	}
 }

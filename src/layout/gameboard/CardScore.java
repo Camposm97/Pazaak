@@ -10,29 +10,41 @@ import model.PazaakCard;
 
 public class CardScore extends StackPane {
 	private int totalScore;
-	private TurnIndicator ti;
 	private Text t;
-	private PlayField playField;
+	private PlayField pf;
+	private TurnIndicator ti;
+	private ScoreBoard scoreBoard;
+	private HandPane handPane;
 	
-	public CardScore() {
+	public CardScore(HandPane handPane) {
 		this.totalScore = 0;
-		this.ti = new TurnIndicator();
-		this.playField = new PlayField();
+		this.pf = new PlayField();
+		this.ti = new TurnIndicator(this);
+		this.scoreBoard = new ScoreBoard();
+		this.handPane = handPane;
 		build();
+	}
+	
+	public PlayField getPf() {
+		return pf;
 	}
 	
 	public TurnIndicator getTi() {
 		return ti;
 	}
 	
-	public PlayField getPlayField() {
-		return playField;
+	public ScoreBoard getScoreBoard() {
+		return scoreBoard;
+	}
+	
+	public HandPane getHandPane() {
+		return handPane;
 	}
 	
 	public void add(PazaakCard pc) {
 		totalScore += pc.getInfo().getNum();
 		t.setText(String.valueOf(totalScore));
-		playField.add(pc);
+		pf.add(pc);
 	}
 	
 	private void build() {

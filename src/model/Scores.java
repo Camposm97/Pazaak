@@ -19,7 +19,7 @@ public class Scores {
 		return arr;
 	}
 	
-	public void setAWin() {
+	public void addWin() {
 		arr[nElems++].flip();
 	}
 	

@@ -5,20 +5,30 @@ import javafx.scene.layout.GridPane;
 import model.Card;
 import model.Hand;
 import model.PazaakCard;
+import model.Player;
 import util.FXUtil;
 
 public class HandPane extends GridPane {
+	private Player opponent;
 	private CardScore cs;
 	private Hand hand;
 
 	public HandPane(Hand hand) {
-		this.cs = new CardScore();
+		this.cs = new CardScore(this);
 		this.hand = hand;
 		this.setHgap(10);
 		this.setVgap(10);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(FXUtil.DEFAULT_INSETS);
 		displayCards();
+	}
+	
+	public Player getOpponent() {
+		return opponent;
+	}
+	
+	public void setOpponent(Player opponent) {
+		this.opponent = opponent;
 	}
 
 	public CardScore getCs() {
@@ -42,6 +52,7 @@ public class HandPane extends GridPane {
 			pc.setOnMouseClicked(e -> {
 				super.getChildren().remove(pc);
 				cs.add(pc);
+				cs.getTi().setFlag(false);
 				pc.setOnMouseClicked(null);
 			});
 			super.add(new Card(), i, 0);

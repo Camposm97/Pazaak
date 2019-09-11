@@ -7,15 +7,20 @@ import model.Scores;
 import util.FXUtil;
 
 public class ScoreBoard extends StackPane {
-	private Scores record;
+	private Scores scores;
 	
 	public ScoreBoard() {
 		super(FXUtil.loadDecor());
 		super.setPadding(FXUtil.DEFAULT_INSETS);
-		this.record = new Scores();
-		VBox vBox = FXUtil.loadVBox(record.getScores());
+		this.scores = new Scores();
+		VBox vBox = FXUtil.loadVBox(scores.getScores());
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setPadding(FXUtil.DEFAULT_INSETS);
 		getChildren().add(vBox);
+	}
+	
+	
+	public Scores getScores() {
+		return scores;
 	}
 }
