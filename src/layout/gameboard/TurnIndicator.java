@@ -3,6 +3,7 @@ package layout.gameboard;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.PazaakCard;
+import util.Initiative;
 
 public class TurnIndicator extends Circle {
 	private CardScore cs;
@@ -15,6 +16,14 @@ public class TurnIndicator extends Circle {
 		super.setFill(Color.DIMGRAY);
 		super.setStroke(Color.BLACK);
 		this.cs = cs;
+	}
+	
+	public CardScore getCs() {
+		return cs;
+	}
+	
+	public boolean isStand() {
+		return stand;
 	}
 	
 	public void setStand(boolean stand) {
@@ -34,12 +43,8 @@ public class TurnIndicator extends Circle {
 		if (flag) {
 			setFill(Color.RED);
 			cs.add(new PazaakCard());
-			if (aiMode) {
-				/*
-				 * Take the total card score and determine to end turn, stand, or
-				 * pick a card to +/- the total card score.  
-				 */
-			}
+			if (aiMode)
+				Initiative.makeMove(this);
 		} else {
 			setFill(Color.DIMGRAY);
 			cs.getHandPane().getOpponent().setTurn(true);

@@ -25,6 +25,10 @@ public class CardScore extends StackPane {
 		build();
 	}
 	
+	public int getTotalScore() {
+		return totalScore;
+	}
+	
 	public PlayField getPf() {
 		return pf;
 	}
