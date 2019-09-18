@@ -32,6 +32,10 @@ public class TurnMark extends Circle {
 		setFlag(false);
 	}
 	
+	public boolean isAIMode() {
+		return aiMode;
+	}
+	
 	public void setAIMode(boolean aiMode) {
 		this.aiMode = aiMode;
 	}
