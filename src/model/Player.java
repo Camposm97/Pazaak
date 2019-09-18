@@ -42,12 +42,16 @@ public class Player {
 		return handPane.getCs().getPf();
 	}
 	
-	public void setOpponent(Player opponent) {
-		handPane.setOpponent(opponent);
+	public void setOpp(Player opp) {
+		handPane.setOpp(opp);
 	}
 	
 	public void setTurn(boolean flag) {
 		handPane.getCs().getTi().setFlag(flag);
+	}
+	
+	public void setAIMode(boolean aiMode) {
+		handPane.getCs().getTi().setAIMode(aiMode);
 	}
 	
 	public void hideCards() {

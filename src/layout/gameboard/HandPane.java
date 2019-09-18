@@ -9,7 +9,7 @@ import model.Player;
 import util.FXUtil;
 
 public class HandPane extends GridPane {
-	private Player opponent;
+	private Player opp;
 	private CardScore cs;
 	private Hand hand;
 
@@ -23,12 +23,12 @@ public class HandPane extends GridPane {
 		displayCards();
 	}
 	
-	public Player getOpponent() {
-		return opponent;
+	public Player getOpp() {
+		return opp;
 	}
 	
-	public void setOpponent(Player opponent) {
-		this.opponent = opponent;
+	public void setOpp(Player opp) {
+		this.opp = opp;
 	}
 
 	public CardScore getCs() {
@@ -50,7 +50,7 @@ public class HandPane extends GridPane {
 		for (int i = 0; i < hand.getCards().size(); i++) {
 			PazaakCard pc = hand.getCards().get(i);
 			pc.setOnMouseClicked(e -> {
-				super.getChildren().remove(pc);
+				super.getChildren().remove(pc); // Remove card from hand
 				cs.add(pc);
 				cs.getTi().setFlag(false);
 				pc.setOnMouseClicked(null);

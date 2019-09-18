@@ -10,9 +10,10 @@ public class GameMaster {
 	
 	public void startGame() {
 		p1.getHandPane().getCs().getTi().setFlag(true); // Player One goes first
-//		p2.hideCards(); // Hide Player Two's cards from Player One
-		p1.setOpponent(p2);
-		p2.setOpponent(p1);
+		p2.hideCards(); // Hide Player Two's cards from Player One
+		p1.setOpp(p2);
+		p2.setOpp(p1);
+		p2.setAIMode(true);
 	}
 	
 	public Player getP1() {

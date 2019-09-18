@@ -50,7 +50,7 @@ public class GameBoard extends StackPane {
 		centerPane = new StackPane(FXUtil.loadDecor(), hBox3);
 		s3.prefHeightProperty().bind(centerPane.heightProperty());
 
-		// Place the Built Panes onto root
+		// Place the Built Panes onto root (BorderPane)
 		root = new BorderPane(centerPane, topPane, gm.getP1().getScoreBoard(), bottomPane, gm.getP2().getScoreBoard());
 		root.setPadding(new Insets(10));
 		this.getChildren().add(root);

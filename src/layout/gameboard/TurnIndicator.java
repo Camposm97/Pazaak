@@ -42,12 +42,12 @@ public class TurnIndicator extends Circle {
 		this.flag = flag;
 		if (flag) {
 			setFill(Color.RED);
-			cs.add(new PazaakCard());
-			if (aiMode)
-				Initiative.makeMove(this);
+			cs.add(new PazaakCard()); // Draw Green Card onto Playing Field
+			if (aiMode) // Let Computer make the next move
+				Initiative.makeMove(this); 
 		} else {
 			setFill(Color.DIMGRAY);
-			cs.getHandPane().getOpponent().setTurn(true);
+			cs.getHandPane().getOpp().setTurn(true);
 		}
 	}
 }
