@@ -10,6 +10,8 @@ import model.Hand;
  * Things to Fix:
  * - Stop the AI from adding duplicate children to the playing field
  * after the human player decides to stand.
+ * - When someone wins, clear the playing fields and add a ScoreMark
+ * to the winner's score board.  
  * @author Camposm97
  */
 public class Demo extends Application {
