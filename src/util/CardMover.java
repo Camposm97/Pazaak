@@ -1,6 +1,7 @@
 package util;
 
 import layout.gameboard.HandPane;
+import layout.gameboard.TurnMark;
 import model.PazaakCard;
 
 public class CardMover {
@@ -11,10 +12,13 @@ public class CardMover {
 
 		if (handPane.cs().tm().isAIMode()) {
 			int totalScore = handPane.cs().getTotalScore();
+			TurnMark tm = handPane.opp().getHandPane().cs().tm();
+			int oppTotalScore = tm.cs().getTotalScore();
 			if (totalScore == WinnerUtil.GOAL) { // Stand since totalScore = 20
 				handPane.cs().tm().setStand(true);
-			} else if (totalScore <= (WinnerUtil.GOAL - 2)
-					&& (totalScore == handPane.opp().getHandPane().cs().getTotalScore())) {
+			} else if (totalScore >= oppTotalScore && tm.isStand()) {
+				handPane.cs().tm().setStand(true);
+			} else if (totalScore <= WinnerUtil.GOAL && totalScore > WinnerUtil.GOAL - 2) {
 				handPane.cs().tm().setStand(true);
 			} else {
 				handPane.cs().tm().setFlag(false);
