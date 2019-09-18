@@ -21,7 +21,7 @@ public class PlayField extends GridPane {
 		return (getChildren().size() >= SIZE);
 	}
 	
-	public void clear() {
+	public void clean() {
 		super.getChildren().clear();
 		displayPlaceHolders();
 	}

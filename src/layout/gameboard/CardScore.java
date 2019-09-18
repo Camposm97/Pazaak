@@ -56,6 +56,13 @@ public class CardScore extends StackPane {
 		}
 	}
 	
+	public void reset() {
+		totalScore = 0;
+		t.setText(String.valueOf(totalScore));
+		tm.setStand(false);
+		pf.clean();
+	}
+	
 	private void build() {
 		double arc = NamePane.HEIGHT;
 		Font font = Font.font(NamePane.WIDTH * 0.05);
