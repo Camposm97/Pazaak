@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.PazaakAI;
 import model.PazaakCard;
+import util.WinnerUtil;
 
 public class TurnMark extends Circle {
 	private CardScore cs;
@@ -28,6 +29,7 @@ public class TurnMark extends Circle {
 	
 	public void setStand(boolean stand) {
 		this.stand = stand;
+		setFlag(false);
 	}
 	
 	public void setAIMode(boolean aiMode) {
@@ -42,6 +44,7 @@ public class TurnMark extends Circle {
 		this.flag = flag;
 		if (stand && cs.handPane().opp().getHandPane().cs().tm().isStand()) {
 			System.out.println("Both players are standing");
+			WinnerUtil.chooseWinner(cs);
 			return;
 		}
 		if (!stand) {

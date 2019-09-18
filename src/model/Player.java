@@ -32,7 +32,6 @@ public class Player {
 		Button btStand = new Button("Stand");
 		btStand.setOnAction(e -> {
 			handPane.cs().tm().setStand(true);
-			handPane.cs().tm().setFlag(false);
 			btStand.setDisable(true);
 		});
 		btStand.setPrefWidth(FXUtil.BTN_WIDTH);

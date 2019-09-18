@@ -8,7 +8,15 @@ public class CardMover {
 		pc.setOnMouseClicked(null);
 		handPane.getChildren().remove(pc); // Remove the card from the hand
 		handPane.cs().add(pc);
-		handPane.cs().tm().setFlag(false);
-		WinningUtil.computeScore(handPane);
+		
+		int totalScore = handPane.cs().getTotalScore();
+		if (totalScore == WinnerUtil.GOAL) { // Stand since totalScore = 20
+			handPane.cs().tm().setStand(true);
+		} else if (totalScore <= (WinnerUtil.GOAL - 2) 
+				&& (totalScore == handPane.opp().getHandPane().cs().getTotalScore())) {
+			handPane.cs().tm().setStand(true);
+		} else {
+			handPane.cs().tm().setFlag(false);
+		}
 	}
 }
