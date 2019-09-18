@@ -11,7 +11,7 @@ public class Demo extends Application {
 	public void start(Stage stage) throws Exception {
 		Scene scene = new Scene(new GameBoard(new Hand()));
 		stage.setScene(scene);
-		stage.setFullScreen(true); 
+		stage.setMaximized(true);
 		stage.show();
     }
 
