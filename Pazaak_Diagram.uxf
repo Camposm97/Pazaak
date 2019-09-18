@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>230</x>
+      <y>70</y>
+      <w>220</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+private:
+String name
+HandPane handPane
+--
+public:
+String getName()
+HandPane getHandPane()
+ScoreBoard getScore()
+HBox getPlayerPane(Align a)
+PlayField getPlayField()
+void setOpp(Player opp)
+void setTurn(boolean flag)
+void setAiMode(boolean aiMode)
+void hideCards()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>70</y>
+      <w>200</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>HandPane
+--
+private:
+Player oppenent
+CardScore cs
+Hand hand
+--
+public:
+Player getOpp()
+void setOpp(Player Opp)
+CardScore getCs()
+Hand getHand()
+void hideCards()
+void displayCards()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>70</y>
+      <w>200</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>CardScore
+--
+private:
+int totalScore
+Text t
+PlayField pf
+TurnMark tm
+ScoreBoard sb
+HandPane handPane
+--
+public:
+int getTotalScore()
+PlayField getPf()
+TurnMark getTm()
+ScoreBoard getScoreBoard()
+HandPane getHandPane()
+void add(PazaakCard pc)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>370</y>
+      <w>150</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>ScoreBoard
+--
+private:
+Scores scores
+--
+public:
+getScores()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>370</y>
+      <w>200</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Hand
+--
+Class Variables:
+int SIZE = 4
+--
+private:
+List&lt;PazaakCard&gt; cards
+--
+public:
+List&lt;PazaakCard&gt; getCards()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>620</y>
+      <w>170</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Scores
+--
+private:
+ScoreMark[] scores
+int nElems;
+--
+public:
+ScoreMark[] getScores()
+void addWin()
+boolean wonAll()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>620</y>
+      <w>150</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>ScoreMark
+--
+private:
+Circle c1
+Circle c2
+boolean flipped
+--
+public:
+void flip()
+boolean isFlipped()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>160</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>170</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>940</x>
+      <y>160</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>950</x>
+      <y>370</y>
+      <w>200</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>PlayField
+--
+Class Variables:
+int COL_LIMIT = 3
+int ROW_LIMIT = 3
+--
+private:
+int col
+int row
+void displayPlaceHolders()
+--
+public:
+void clear()
+void add(Node node)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>320</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>940</x>
+      <y>240</y>
+      <w>70</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>320</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>520</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1010</x>
+      <y>70</y>
+      <w>230</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>TurnMark
+--
+private:
+CardScore cs
+boolean stand
+boolean aiMode
+boolean flag
+--
+public:
+CardScore getCs()
+boolean isStand()
+void setStand(boolean stand)
+void setAIMode(boolean aiMode)
+iboolean isFlag()
+void setFlag(boolean flag)
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>20</y>
+      <w>1200</w>
+      <h>810</h>
+    </coordinates>
+    <panel_attributes>&lt;Object Diagram (Right Now)&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
