@@ -2,23 +2,23 @@ package layout.gameboard;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.PazaakAI;
 import model.PazaakCard;
-import util.Initiative;
 
-public class TurnIndicator extends Circle {
+public class TurnMark extends Circle {
 	private CardScore cs;
 	private boolean stand;
 	private boolean aiMode;
 	private boolean flag;
 	
-	public TurnIndicator(CardScore cs) {
+	public TurnMark(CardScore cs) {
 		super(NamePane.HEIGHT / 2);
 		super.setFill(Color.DIMGRAY);
 		super.setStroke(Color.BLACK);
 		this.cs = cs;
 	}
 	
-	public CardScore getCs() {
+	public CardScore cs() {
 		return cs;
 	}
 	
@@ -40,14 +40,26 @@ public class TurnIndicator extends Circle {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
-		if (flag) {
-			setFill(Color.RED);
-			cs.add(new PazaakCard()); // Draw Green Card onto Playing Field
-			if (aiMode) // Let Computer make the next move
-				Initiative.makeMove(this); 
+		if (stand && cs.handPane().opp().getHandPane().cs().tm().isStand()) {
+			System.out.println("Both players are standing");
+			return;
+		}
+		if (!stand) {
+			if (flag) {
+				setFill(Color.RED);
+				cs.add(new PazaakCard()); // Draw Green Card onto Playing Field
+				if (aiMode) {// Let Computer make the next move
+					PazaakAI ai = new PazaakAI(this);
+					ai.makeMove();
+				}
+			} else {
+				setFill(Color.DIMGRAY);
+				cs.handPane().opp().setTurn(true);
+			}
 		} else {
 			setFill(Color.DIMGRAY);
-			cs.getHandPane().getOpp().setTurn(true);
+			cs.handPane().opp().setTurn(true);
 		}
+		
 	}
 }

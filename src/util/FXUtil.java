@@ -13,7 +13,9 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
+import layout.gameboard.HandPane;
 import model.CardType;
+import model.PazaakCard;
 
 public class FXUtil {
 	public static final Insets DEFAULT_INSETS = new Insets(10);
@@ -84,5 +86,12 @@ public class FXUtil {
 		}
 		LinearGradient lg = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
 		return lg;
+	}
+
+	public static void transferCards(HandPane handPane, PazaakCard pc) {
+		handPane.getChildren().remove(pc); // Remove card from hand
+		handPane.cs().add(pc);
+		handPane.cs().tm().setFlag(false);
+		pc.setOnMouseClicked(null);
 	}
 }

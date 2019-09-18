@@ -12,15 +12,15 @@ public class CardScore extends StackPane {
 	private int totalScore;
 	private Text t;
 	private PlayField pf;
-	private TurnIndicator ti;
-	private ScoreBoard scoreBoard;
+	private TurnMark tm;
+	private ScoreBoard sb;
 	private HandPane handPane;
 	
 	public CardScore(HandPane handPane) {
 		this.totalScore = 0;
 		this.pf = new PlayField();
-		this.ti = new TurnIndicator(this);
-		this.scoreBoard = new ScoreBoard();
+		this.tm = new TurnMark(this);
+		this.sb = new ScoreBoard();
 		this.handPane = handPane;
 		build();
 	}
@@ -29,26 +29,30 @@ public class CardScore extends StackPane {
 		return totalScore;
 	}
 	
-	public PlayField getPf() {
+	public PlayField pf() {
 		return pf;
 	}
 	
-	public TurnIndicator getTi() {
-		return ti;
+	public TurnMark tm() {
+		return tm;
 	}
 	
-	public ScoreBoard getScoreBoard() {
-		return scoreBoard;
+	public ScoreBoard sb() {
+		return sb;
 	}
 	
-	public HandPane getHandPane() {
+	public HandPane handPane() {
 		return handPane;
 	}
 	
 	public void add(PazaakCard pc) {
-		totalScore += pc.getInfo().getNum();
-		t.setText(String.valueOf(totalScore));
-		pf.add(pc);
+		if (pf.isFull()) {
+			tm.setStand(true);
+		} else {
+			totalScore += pc.getInfo().getNum();
+			t.setText(String.valueOf(totalScore));
+			pf.add(pc);
+		}
 	}
 	
 	private void build() {

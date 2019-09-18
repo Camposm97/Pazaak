@@ -23,7 +23,17 @@ public class HandPane extends GridPane {
 		displayCards();
 	}
 	
-	public Player getOpp() {
+	public HandPane() {
+		this.cs = new CardScore(this);
+		this.hand = new Hand();
+		this.setHgap(10);
+		this.setVgap(10);
+		this.setAlignment(Pos.CENTER);
+		this.setPadding(FXUtil.DEFAULT_INSETS);
+		displayCards();
+	}
+	
+	public Player opp() {
 		return opp;
 	}
 	
@@ -31,11 +41,11 @@ public class HandPane extends GridPane {
 		this.opp = opp;
 	}
 
-	public CardScore getCs() {
+	public CardScore cs() {
 		return cs;
 	}
 
-	public Hand getHand() {
+	public Hand hand() {
 		return hand;
 	}
 
@@ -50,10 +60,7 @@ public class HandPane extends GridPane {
 		for (int i = 0; i < hand.getCards().size(); i++) {
 			PazaakCard pc = hand.getCards().get(i);
 			pc.setOnMouseClicked(e -> {
-				super.getChildren().remove(pc); // Remove card from hand
-				cs.add(pc);
-				cs.getTi().setFlag(false);
-				pc.setOnMouseClicked(null);
+				FXUtil.transferCards(this, pc);
 			});
 			super.add(new Card(), i, 0);
 			super.add(hand.getCards().get(i), i, 0);

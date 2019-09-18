@@ -22,7 +22,7 @@ public class Hand {
 		this.cards = drawCards(deck);
 	}
 	
-	public Hand() {
+	public Hand() { // Constructor creates random cards for deck
 		this.cards = drawCards(DeckPicker.pickRandomDeck());
 	}
 	

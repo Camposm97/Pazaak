@@ -7,6 +7,7 @@ import model.Card;
 
 public class PlayField extends GridPane {
 	private static final int COL_LIMIT = 3, ROW_LIMIT = 3;
+	private static final int SIZE = COL_LIMIT * ROW_LIMIT * 2;
 	private int col, row;
 
 	public PlayField() {
@@ -14,6 +15,10 @@ public class PlayField extends GridPane {
 		super.setHgap(10);
 		super.setVgap(10);
 		displayPlaceHolders();
+	}
+	
+	public boolean isFull() {
+		return (getChildren().size() >= SIZE);
 	}
 	
 	public void clear() {
