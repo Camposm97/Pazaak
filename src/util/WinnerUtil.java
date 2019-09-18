@@ -16,7 +16,7 @@ public class WinnerUtil {
 			System.out.println("Player 2 is the winner");
 		} else if (score1 > score2 && score1 <= GOAL) {
 			System.out.println("Player 1 is the winner");
-		} else {
+		} else if (score1 < score2 && score2 <= GOAL) {
 			System.out.println("Player 2 is the winner");
 		}
 	}
