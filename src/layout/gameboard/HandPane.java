@@ -6,6 +6,7 @@ import model.Card;
 import model.Hand;
 import model.PazaakCard;
 import model.Player;
+import util.CardMover;
 import util.FXUtil;
 
 public class HandPane extends GridPane {
@@ -59,9 +60,7 @@ public class HandPane extends GridPane {
 		// Display Cards From Hand & Place Holders
 		for (int i = 0; i < hand.getCards().size(); i++) {
 			PazaakCard pc = hand.getCards().get(i);
-			pc.setOnMouseClicked(e -> {
-				FXUtil.transferCards(this, pc);
-			});
+			pc.setOnMouseClicked(e -> { CardMover.moveToField(this, pc); });
 			super.add(new Card(), i, 0);
 			super.add(hand.getCards().get(i), i, 0);
 		}

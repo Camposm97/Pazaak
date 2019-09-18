@@ -48,6 +48,7 @@ public class CardScore extends StackPane {
 	public void add(PazaakCard pc) {
 		if (pf.isFull()) {
 			tm.setStand(true);
+			tm.setFlag(false);
 		} else {
 			totalScore += pc.getInfo().getNum();
 			t.setText(String.valueOf(totalScore));

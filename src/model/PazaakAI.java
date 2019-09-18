@@ -3,21 +3,26 @@ package model;
 import java.util.List;
 
 import layout.gameboard.TurnMark;
+import util.CardMover;
 
 public class PazaakAI {
-	private static final int GOAL = 20;
+	public static final int GOAL = 20;
 	private TurnMark tm;
 	private int totalScore;
+	private int oppTotalScore;
 	private Hand hand;
 	
 	public PazaakAI(TurnMark tm) {
 		this.tm = tm;
 		this.totalScore = tm.cs().getTotalScore();
+		this.oppTotalScore = tm.cs().handPane().opp().getHandPane().cs().getTotalScore();
 		this.hand = tm.cs().handPane().hand();
 	}
 	
-	public void makeMove() {
-		if (totalScore == GOAL) {
+	public void computeMove() {
+		if (totalScore == GOAL 
+				|| (totalScore >= (GOAL - 2) 
+				&& totalScore >= oppTotalScore) && totalScore <= GOAL) {
 			System.out.println("Standing");
 			tm.setStand(true); // No more turns, let Player go and see if he/she can tie
 		} else if (totalScore > GOAL) {
@@ -35,7 +40,14 @@ public class PazaakAI {
 			List<PazaakCard> list = hand.getCards();
 			PazaakCard pc = null;
 			for (PazaakCard card : list) {
-				
+				if (card.getInfo().getType().equals(CardType.Plus)) {
+					System.out.println("Found a plus card");
+					pc = card;
+					int score = pc.getInfo().getNum() + totalScore;
+					if (score == GOAL || score >= (GOAL - 2)) {
+						
+					}
+				}
 			}	
 		}
 	}
@@ -60,6 +72,7 @@ public class PazaakAI {
 		}
 		if (pc != null) { // Use Minus Card
 			System.out.println("Using Minus Card");
+			CardMover.moveToField(tm.cs().handPane(), pc);
 		} else { // Stand and Admit Defeat
 			System.out.println("Standing and Defeat");
 			tm.setStand(true);

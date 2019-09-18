@@ -50,7 +50,7 @@ public class TurnMark extends Circle {
 				cs.add(new PazaakCard()); // Draw Green Card onto Playing Field
 				if (aiMode) {// Let Computer make the next move
 					PazaakAI ai = new PazaakAI(this);
-					ai.makeMove();
+					ai.computeMove();
 				}
 			} else {
 				setFill(Color.DIMGRAY);
